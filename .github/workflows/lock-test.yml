@@ -8,6 +8,3 @@ jobs:
     steps:
       - name: Run locked synthetic action
         uses: milrnacni101/vdp-lock-action-20261015@v1
-      - parallel:
-          - name: Run nested replacement action
-            uses: milrnacni101/vdp-lock-action-replacement-20261015@v1
