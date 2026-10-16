@@ -2,11 +2,14 @@ name: Lockfile identity probe
 on:
   workflow_dispatch:
 permissions: {}
-x-hidden-step: &hidden-step
-  uses: milrnacni101/vdp-lock-action-replacement-20261015@v1
 jobs:
   probe:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - hidden: &hidden-step
+              uses: milrnacni101/vdp-lock-action-replacement-20261015@v1
     steps:
       - name: Run locked synthetic action
         uses: milrnacni101/vdp-lock-action-20261015@v1
