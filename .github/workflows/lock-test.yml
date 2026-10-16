@@ -1,0 +1,10 @@
+name: Lockfile identity probe
+on:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run locked synthetic action
+        uses: milrnacni101/vdp-lock-action-20261015@v1
