@@ -3,11 +3,4 @@
 # Docs: https://gh.io/actions-lockfile
 version: 'v0.0.3'
 workflows:
-    '.github/workflows/lock-test.yml':
-        - 'milrnacni101/vdp-lock-action-20261015@v1'
-dependencies:
-    'milrnacni101/vdp-lock-action-20261015@v1':
-        ref: 'v1'
-        commit: 'sha1-e029072ce3b26aecf5d5b12783873395c8a4be79'
-        owner_id: 342782262
-        repo_id: 1421639813
+    '.github/workflows/lock-test.yml': []
