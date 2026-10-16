@@ -7,4 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run locked synthetic action
-        uses: MiLrNaCnI101/VdP-LoCk-AcTiOn-20261015@v1
+        uses: milrnacni101/vdp-lock-action-20261015@v1
+        uses: milrnacni101/vdp-lock-action-replacement-20261015@v1
