@@ -1,0 +1,14 @@
+name: VDP policy listener
+on:
+  workflow_run:
+    workflows: ["VDP policy source"]
+    types: [completed]
+permissions: {}
+jobs:
+  listener:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "POLICY_CHAIN_EXECUTED"
+          echo "upstream_conclusion=${{ github.event.workflow_run.conclusion }}"
+          echo "upstream_actor=${{ github.event.workflow_run.actor.login }}"
