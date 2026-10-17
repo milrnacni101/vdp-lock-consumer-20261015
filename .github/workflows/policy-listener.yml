@@ -1,6 +1,7 @@
 name: VDP policy protected reusable
 on:
   workflow_call:
+  workflow_dispatch:
 permissions: {}
 jobs:
   protected:
