@@ -1,0 +1,15 @@
+name: Workflow permission PoC 1792260973
+on:
+  push:
+    branches: [main]
+permissions: {}
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        env:
+          CANARY: ${{ secrets.VDP_POLICY_SECRET }}
+        run: |
+          echo WORKFLOW_PERMISSION_POC_1792260973
+          printf '%s' "$CANARY" | sha256sum
