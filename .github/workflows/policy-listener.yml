@@ -2,8 +2,6 @@ name: VDP policy protected reusable
 on:
   workflow_call:
   workflow_dispatch:
-  repository_dispatch:
-    types: [vdp_policy_repository_dispatch_1792227719]
 permissions: {}
 jobs:
   protected:
