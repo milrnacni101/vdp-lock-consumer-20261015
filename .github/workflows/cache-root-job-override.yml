@@ -1,0 +1,8 @@
+name: VDP cache root job override
+on:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  call-leaf:
+    cache-mode: none
+    uses: ./.github/workflows/cache-leaf-job-override.yml
