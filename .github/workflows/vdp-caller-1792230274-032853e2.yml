@@ -1,9 +1,0 @@
-name: VDP reusable caller 1792230274-032853e2
-on:
-  workflow_dispatch:
-permissions:
-  contents: read
-jobs:
-  call-suspicious-callee:
-    uses: ./.github/workflows/vdp-callee-1792230274-032853e2.yml
-    secrets: inherit
