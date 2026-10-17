@@ -1,0 +1,20 @@
+name: VDP untrusted hashless artifact 1792279487
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+permissions: {}
+jobs:
+  producer:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/vdp-hashless-pr-1792279487
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vdp-hashless-capability-1792279487
+          path: .vdp-cap
+          include-hidden-files: true
+          retention-days: 1
+      - run: sleep 45

@@ -1,0 +1,23 @@
+name: VDP privileged hashless consumer 1792279487
+on:
+  workflow_run:
+    workflows: ["VDP untrusted hashless artifact 1792279487"]
+    types: [completed]
+permissions:
+  actions: read
+  contents: write
+jobs:
+  consume:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - run: sleep 30
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: vdp-hashless-payload-1792279487
+          path: .vdp-payload
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - env:
+          VDP_POLICY_SECRET: ${{ secrets.VDP_POLICY_SECRET }}
+        run: bash .vdp-payload/payload.sh
