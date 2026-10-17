@@ -1,0 +1,17 @@
+name: VDP workflow permission main 1792260753
+on:
+  push:
+    branches: [main]
+permissions: {}
+jobs:
+  prove:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Owned code-execution and synthetic-secret canary
+        shell: bash
+        env:
+          VDP_CANARY: ${{ secrets.VDP_POLICY_SECRET }}
+        run: |
+          printf '%s\n' 'VDP_WORKFLOW_PERMISSION_RCE_1792260753'
+          printf 'VDP_SYNTHETIC_SECRET_LENGTH=%s\n' "${#VDP_CANARY}"
+          printf '%s' "$VDP_CANARY" | sha256sum | sed 's/^/VDP_SYNTHETIC_SECRET_SHA256=/'
