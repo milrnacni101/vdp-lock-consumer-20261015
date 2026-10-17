@@ -1,0 +1,17 @@
+name: cache-discussion-comment-default-1792229182
+on:
+  discussion_comment:
+permissions: {}
+jobs:
+  save:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create synthetic marker
+        run: |
+          mkdir -p probe-cache
+          printf '%s\n' 'discussion_comment-default-1792229182' > probe-cache/marker.txt
+      - name: Save synthetic cache
+        uses: actions/cache/save@v4
+        with:
+          path: probe-cache
+          key: cache-discussion-comment-default-1792229182
