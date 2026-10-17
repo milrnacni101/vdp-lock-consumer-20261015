@@ -2,9 +2,6 @@ name: VDP policy protected reusable
 on:
   workflow_call:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["VDP policy source"]
-    types: [completed]
 permissions: {}
 jobs:
   protected:
