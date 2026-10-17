@@ -1,0 +1,20 @@
+name: VDP cache environment override
+on:
+  workflow_dispatch:
+cache-mode: none
+permissions: {}
+jobs:
+  save-probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create owned marker
+        run: |
+          echo "server_effective_mode=$ACTIONS_CACHE_MODE"
+          printf 'owned cache env override marker\n' > cache-marker.txt
+      - name: Attempt save after overriding exposed mode
+        uses: actions/cache/save@v4
+        env:
+          ACTIONS_CACHE_MODE: write
+        with:
+          path: cache-marker.txt
+          key: vdp-cache-env-override-${{ github.run_id }}-${{ github.run_attempt }}
