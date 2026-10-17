@@ -1,13 +1,11 @@
-name: VDP policy listener
+name: VDP policy protected reusable
 on:
-  repository_dispatch:
-    types: [vdp-policy-chain]
+  workflow_call:
 permissions: {}
 jobs:
-  listener:
+  protected:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "POLICY_PROTECTED_LISTENER_EXECUTED"
+          echo "POLICY_PROTECTED_REUSABLE_EXECUTED"
           echo "actor=${{ github.actor }}"
-          echo "marker=${{ github.event.client_payload.marker }}"

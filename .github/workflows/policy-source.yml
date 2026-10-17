@@ -1,20 +1,7 @@
 name: VDP policy source
 on:
   workflow_dispatch:
-permissions:
-  contents: write
+permissions: {}
 jobs:
-  dispatch:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger protected workflow
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          curl --fail-with-body \
-            -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            -H "X-GitHub-Api-Version: 2026-03-10" \
-            "$GITHUB_API_URL/repos/$GITHUB_REPOSITORY/dispatches" \
-            -d '{"event_type":"vdp-policy-chain","client_payload":{"marker":"CHAIN_FROM_DISALLOWED_APP"}}'
+  call-protected:
+    uses: ./.github/workflows/policy-listener.yml
