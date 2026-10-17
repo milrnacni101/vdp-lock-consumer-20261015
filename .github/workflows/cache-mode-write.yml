@@ -1,0 +1,8 @@
+name: cache mode write caller
+on: workflow_dispatch
+jobs:
+  call:
+    cache-mode: write
+    uses: ./.github/workflows/cache-mode-callee.yml
+    with:
+      label: write
