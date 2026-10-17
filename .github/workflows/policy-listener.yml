@@ -1,22 +1,11 @@
-name: VDP policy protected reusable
+name: Policy check-run listener
 on:
-  workflow_call:
   workflow_dispatch:
-permissions: {}
+  check_run:
+    types: [created, completed]
 jobs:
   protected:
     runs-on: ubuntu-latest
     steps:
-      - name: Read protected secret
-        env:
-          POLICY_SECRET: ${{ secrets.VDP_POLICY_SECRET }}
-        run: |
-          echo "POLICY_PROTECTED_REUSABLE_EXECUTED"
-          echo "actor=${{ github.actor }}"
-          printf '%s' "$POLICY_SECRET" > policy-secret.txt
-      - name: Persist protected secret as evidence
-        uses: actions/upload-artifact@v4
-        with:
-          name: protected-secret
-          path: policy-secret.txt
-          retention-days: 1
+      - name: Synthetic protected marker
+        run: echo 'owned check-run protection probe'
