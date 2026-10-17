@@ -2,9 +2,6 @@ name: VDP policy protected reusable
 on:
   workflow_call:
   workflow_dispatch:
-  push:
-    branches: [vdp-policy-git-event-1792228075]
-  delete:
 permissions: {}
 jobs:
   protected:
