@@ -3,6 +3,8 @@ on:
   workflow_dispatch:
 permissions: {}
 jobs:
-  call-protected:
-    uses: ./.github/workflows/policy-listener.yml
-    secrets: inherit
+  source:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Synthetic source completion
+        run: echo "OWNED_WORKFLOW_RUN_POLICY_SOURCE_20261017"
