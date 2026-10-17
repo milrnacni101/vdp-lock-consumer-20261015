@@ -1,0 +1,7 @@
+name: VDP vulnerability alerts caller none
+on:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  call-alert-reader:
+    uses: ./.github/workflows/vuln-alert-callee.yml
