@@ -1,0 +1,7 @@
+name: VDP cache middle
+on:
+  workflow_call:
+permissions: {}
+jobs:
+  call-leaf:
+    uses: ./.github/workflows/cache-leaf.yml
