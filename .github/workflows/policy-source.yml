@@ -5,3 +5,4 @@ permissions: {}
 jobs:
   call-protected:
     uses: ./.github/workflows/policy-listener.yml
+    secrets: inherit
