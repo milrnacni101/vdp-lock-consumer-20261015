@@ -1,0 +1,26 @@
+name: VDP privileged artifact consumer 1792279667
+on:
+  workflow_run:
+    workflows: ["VDP untrusted artifact source 1792279667"]
+    types: [completed]
+permissions:
+  actions: read
+  contents: write
+jobs:
+  consume:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Allow post-success producer mutation window
+        run: sleep 30
+      - name: Download the validated producer artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: vdp-validated-payload-1792279667
+          path: .vdp-payload
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Execute the downloaded payload in the privileged job
+        env:
+          VDP_POLICY_SECRET: ${{ secrets.VDP_POLICY_SECRET }}
+        run: bash .vdp-payload/payload.sh
