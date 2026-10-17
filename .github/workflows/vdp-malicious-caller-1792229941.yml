@@ -1,0 +1,9 @@
+name: VDP benign caller 1792229941
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  call-detector-canary:
+    uses: ./.github/workflows/vdp-malicious-callee-1792229941.yml
+    secrets: inherit
