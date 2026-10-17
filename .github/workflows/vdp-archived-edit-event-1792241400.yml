@@ -1,0 +1,17 @@
+name: VDP archived PR edit event 1792241400
+on:
+  pull_request_target:
+    types:
+      - edited
+permissions:
+  contents: read
+jobs:
+  secret-context-control:
+    runs-on: ubuntu-latest
+    env:
+      SYNTHETIC_SECRET: ${{ secrets.VDP_POLICY_SECRET }}
+    steps:
+      - shell: bash
+        run: |
+          test -n "$SYNTHETIC_SECRET"
+          echo "VDP_ARCHIVED_EDIT_SECRET_CONTEXT_1792241400"
