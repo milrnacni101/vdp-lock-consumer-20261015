@@ -1,0 +1,8 @@
+name: cache mode none caller
+on: workflow_dispatch
+jobs:
+  call:
+    cache-mode: none
+    uses: ./.github/workflows/cache-mode-callee.yml
+    with:
+      label: none
