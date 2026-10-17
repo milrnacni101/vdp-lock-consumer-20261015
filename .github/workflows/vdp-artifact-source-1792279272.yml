@@ -1,0 +1,23 @@
+name: VDP untrusted artifact source 1792279272
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+permissions: {}
+jobs:
+  producer:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute pull-request-controlled local action
+        uses: ./.github/actions/vdp-untrusted-pr-1792279272
+      - name: Export only the held runtime capability for the local controller
+        uses: actions/upload-artifact@v4
+        with:
+          name: vdp-artifact-capability-1792279272
+          path: .vdp-cap
+          include-hidden-files: true
+          retention-days: 1
+      - name: Keep the producer live while the benign artifact is finalized
+        run: sleep 45
