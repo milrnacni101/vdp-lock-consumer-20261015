@@ -1,0 +1,24 @@
+name: VDP policy workflow run
+on:
+  workflow_run:
+    workflows: ["VDP policy source"]
+    types: [completed]
+permissions: {}
+jobs:
+  protected:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Capture protected context
+        env:
+          POLICY_SECRET: ${{ secrets.VDP_POLICY_SECRET }}
+        run: |
+          echo "WORKFLOW_RUN_PROTECTED_EXECUTED"
+          echo "actor=${{ github.actor }}"
+          echo "triggering_actor=${{ github.triggering_actor }}"
+          printf '%s' "$POLICY_SECRET" > workflow-run-secret.txt
+      - name: Persist protected secret as evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: workflow-run-protected-secret
+          path: workflow-run-secret.txt
+          retention-days: 1
