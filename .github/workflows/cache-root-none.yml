@@ -1,0 +1,8 @@
+name: VDP cache root none
+on:
+  workflow_dispatch:
+permissions: {}
+jobs:
+  call-middle:
+    cache-mode: none
+    uses: ./.github/workflows/cache-middle.yml
