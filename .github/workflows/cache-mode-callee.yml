@@ -1,0 +1,21 @@
+name: cache mode callee
+on:
+  workflow_call:
+    inputs:
+      label:
+        required: true
+        type: string
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    cache-mode: write
+    steps:
+      - name: Create synthetic cache payload
+        run: |
+          mkdir -p cache-probe
+          printf '%s\n' "CACHE_MODE_SYNTHETIC_${{ inputs.label }}_${{ github.run_id }}" > cache-probe/marker.txt
+      - name: Attempt cache save
+        uses: actions/cache/save@v4
+        with:
+          path: cache-probe
+          key: cache-mode-${{ inputs.label }}-${{ github.run_id }}
