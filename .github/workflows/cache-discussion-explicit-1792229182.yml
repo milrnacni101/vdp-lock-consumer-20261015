@@ -1,0 +1,18 @@
+name: cache-discussion-explicit-1792229182
+on:
+  discussion:
+cache-mode: write
+permissions: {}
+jobs:
+  save:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create synthetic marker
+        run: |
+          mkdir -p probe-cache
+          printf '%s\n' 'discussion-explicit-1792229182' > probe-cache/marker.txt
+      - name: Save synthetic cache
+        uses: actions/cache/save@v4
+        with:
+          path: probe-cache
+          key: cache-discussion-explicit-1792229182
