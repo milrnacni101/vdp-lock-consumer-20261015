@@ -1,0 +1,19 @@
+name: VDP cache leaf job override
+on:
+  workflow_call:
+cache-mode: none
+permissions: {}
+jobs:
+  proof:
+    cache-mode: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Record effective cache mode
+        run: |
+          echo "effective_cache_mode=$ACTIONS_CACHE_MODE"
+          printf 'owned job override cache marker\n' > cache-marker.txt
+      - name: Attempt cache save
+        uses: actions/cache/save@v4
+        with:
+          path: cache-marker.txt
+          key: vdp-job-override-${{ github.run_id }}-${{ github.run_attempt }}
